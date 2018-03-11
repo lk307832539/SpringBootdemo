@@ -1,9 +1,6 @@
-package com.example;
+package com.example.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by LK on 2018/3/9.
@@ -13,9 +10,12 @@ import javax.persistence.Id;
 @Entity
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    private String reader;
+
+    @ManyToOne
+    private Reader reader;
+
     private String isbn;
     private String title;
     private String author;
@@ -29,11 +29,11 @@ public class Book {
         this.id = id;
     }
 
-    public String getReader() {
+    public Reader getReader() {
         return reader;
     }
 
-    public void setReader(String reader) {
+    public void setReader(Reader reader) {
         this.reader = reader;
     }
 

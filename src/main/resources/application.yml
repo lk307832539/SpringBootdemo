@@ -1,0 +1,10 @@
+#error:
+#  whitelabel:
+#    enabled: false
+
+amazon:
+  associate_id: king
+
+#logging:
+#  level:
+#    root: DEBUG

@@ -27,24 +27,24 @@ public class demoAct {
 
     @Autowired
     public demoAct(BookRepository bookRepository,
-                                 AmazonProperties amazonConfig) {
+                   AmazonProperties amazonConfig) {
         this.bookRepository = bookRepository;
         this.amazonConfig = amazonConfig;
     }
 
-    @RequestMapping(method=RequestMethod.GET, value="/fail")
+    @RequestMapping(method = RequestMethod.GET, value = "/fail")
     public void fail() {
         throw new RuntimeException();
     }
 
-    @ExceptionHandler(value=RuntimeException.class)
-    @ResponseStatus(value= HttpStatus.BANDWIDTH_LIMIT_EXCEEDED)
+    @ExceptionHandler(value = RuntimeException.class)
+    @ResponseStatus(value = HttpStatus.BANDWIDTH_LIMIT_EXCEEDED)
     public String error() {
         return "error";
     }
 
 
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String readersBooks(Reader reader, Model model) {
         List<Book> readingList = bookRepository.findByReader(reader);
         if (readingList != null) {
@@ -55,7 +55,7 @@ public class demoAct {
         return "readingList";
     }
 
-    @RequestMapping(method=RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String addToReadingList(Reader reader, Book book) {
         book.setReader(reader);
         bookRepository.save(book);
